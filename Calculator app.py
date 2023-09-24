@@ -30,18 +30,18 @@ class Numbers:
 class Calculator:
     def __init__(self):
         self.operator = None
-        self.first_operand = None
-        self.second_operand = None
+        global first_operand
+        global second_operand
 
     def calculate(self):
         if self.operator == "+":
-            return self.first_operand+self.second_operand
+            return first_operand + second_operand
         elif self.operator == "-":
-            return self.first_operand-self.second_operand
+            return first_operand - second_operand
         elif self.operator == "×":
-            return self.first_operand*self.second_operand
+            return first_operand * second_operand
         else:
-            return self.first_operand / self.second_operand
+            return first_operand / second_operand
 
 
 class Operators:
@@ -54,12 +54,14 @@ class Operators:
         Operators.row += 1
 
     def click(self):
+        global first_operand
+        global second_operand
         if self.operator != "=":
-            calculator.first_operand = int(entry.get())
+            first_operand = int(entry.get())
             calculator.operator = self.operator
             clear.click()
         else:
-            calculator.second_operand = int(entry.get())
+            second_operand = int(entry.get())
             result = calculator.calculate()
             clear.click()
             entry.insert(0, result)
@@ -72,7 +74,7 @@ class Clear:
 
     def click(self):
         global entry_index
-        entry.delete(0, entry_index+1)
+        entry.delete(0, END)
         entry_index = 0
 
 
@@ -98,6 +100,8 @@ operator2=Operators("×")
 operator3=Operators("-")
 operator4=Operators("+")
 operator5=Operators("=")
+first_operand=None
+second_operand=None
 clear=Clear()
 
 root.mainloop()
