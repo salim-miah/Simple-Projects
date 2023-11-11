@@ -317,6 +317,7 @@ def restart():
     box9.config(text="",state=NORMAL)
     label1.config(text="Player1 is playing")
     turns=0
+    board.player1=True
     for row in range(len(board.board)):
         for col in range(len(board.board[row])):
             board.board[row][col]=0
